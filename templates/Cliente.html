@@ -1,0 +1,265 @@
+{%extends "Plantilla.html" %}
+{%block body%}
+<!--<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">-->
+<link rel="stylesheet" href="{{url_for('static', filename='css/colores_basicos.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/Cliente.css')}}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+<div class="fondo_gris">
+    <div class="fondo_azul margin_aa_15">
+        <span></span><b><h2>Registrar Cliente</h2> </b> 
+    </div>
+
+    <div class="Contenedor_Registrar_Cliente">
+        <form action="/Cliente_Nuevo" method="POST" class="">
+
+            <div class="ContenedorNuevo flex wrap margin_aa_15" id="">
+                <h2 class="titulo margin_aa_15">
+                    <b>Ingrese los datos solicitados.</b>
+                </h2>
+                <div class="seccion margin_aa_15">
+                    <input type="text" name="Nombre_Completo" autocomplete="off" required pattern="[a-zA-Z ]+">
+                    <label for="Nombre_Completo" class="Label_Nombre_Completo">
+                        <span class="contenido_Nombre_Completo">Nombre Completo.</span>
+                    </label>
+                </div>
+                <div class="seccion margin_aa_15">
+                    <input type="text" name="Telefono" autocomplete="off" required pattern="[0-9]+">
+                    <label for="Telefono" class="Label_Telefono">
+                        <span class="contenido_Telefono">Telefono.</span>
+                    </label>
+                </div>
+
+
+
+
+
+                <div class="seccion margin_aa_15">
+                    <input type="text" name="Correo" autocomplete="off" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <label for="Correo" class="Label_Correo">
+                        <span class="contenido_Correo">Correo.</span>
+                    </label>
+                </div>
+
+                <div class="seccion margin_aa_15">
+                    <input type="text" name="Cedula" autocomplete="off" required pattern="[0-9]+">
+                    <label for="Cedula" class="Label_Cedula">
+                        <span class="contenido_Cedula">Cedula.</span>
+                    </label>
+                </div>
+                <div class="seccion margin_aa_15">
+                    <input type="text" name="Direccion" autocomplete="off" required>
+                    <label for="Direccion" class="Label_Direccion">
+                        <span class="contenido_Direccion">Direccion.</span>
+                    </label>
+                </div>
+
+                <div class="seccion margin_aa_15">
+                    <input type="text" name="ID" autocomplete="off" required minlength="4" maxlength="4">
+                    <label for="ID" class="Label_ID">
+                        <span class="contenido_ID">Codigo de seguridad</span>
+                    </label>
+                </div>
+                <div class="seccion margin_aa_15">
+                    <input type="date" name="Fecha_Afiliacion" autocomplete="off" required>
+                    <label for="Fecha_Afiliacion" class="LabelFecha_Afiliacion">
+                        <span class="contenido_Fecha_Afiliacion">Fecha de afiliación.</span>
+                    </label>
+                </div>
+                <div class="seccion margin_aa_15">
+                    <input type="checkbox" name="Cobro_recurrente" autocomplete="off" id="cobro_recurrente">
+                    <label for="Producto_Credito" class="LabelProducto_Credito">
+                        <span class="contenido_Producto_Credito">Cobro recurente de monitoreo.</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn_guardar fondo_verde margin_aa_15">
+                    Guardar
+
+                </button>
+                
+
+
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+    <div>
+        <div class="seccion">
+        
+            <input type="text" name="Buscar" autocomplete="off" required class="input_buscar margin_lados_15 valor" id="">
+            <label for="Buscar" class="Label_Buscar">
+                <span class="contenido_Buscar"><b>Buscar.</b></span>
+            </label>
+            
+        </div>
+        {% if contenido == True%}
+            <div class="sin_contenido">
+
+                <h2>SIN CONTENIDO</h2>
+                <img src="{{url_for('static', filename='img/No_hay_contenido.svg')}}" id="no_hay_contenido" alt="">
+            </div>
+        {%else%}
+
+        <div class="margin_aa_15">
+
+            <table id="datatable">
+                <thead>
+                    <tr id="cabeza">
+                        <th class="table-checkbox fondo_negro font_blanco borde_tabla">
+                            <span><input type="checkbox" name="" id=""></span>
+                        </th>
+                        <th class="fondo_negro font_blanco borde_tabla">
+                            Estado
+                        </th>
+                        {%for i in dat_colum%}
+                        <th class="fondo_negro font_blanco borde_tabla">
+                            {{i}}
+                        </th>
+                        {%endfor%}
+                        <th class="fondo_negro font_blanco borde_tabla">
+                            Acción
+                        </th>
+                    </tr>
+    
+    
+    
+                </thead>
+                <tbody id="body" class="fondo_azul">
+    
+                    {%for i in Clientes%}
+                    <tr id="trbody{{i.0}}" >
+                        <td class="table-checkbox borde_tabla">
+                            <input type="checkbox" name="" id="">
+                        </td>
+                        <td class="borde_tabla">
+                            <span class="estado"></span>
+                        </td>
+                        <td class="filtro borde_tabla">
+                            {{i.1}}
+                        </td>
+                        <td class=" borde_tabla">
+                            {{i.2}}
+                        </td>
+                        <td class=" borde_tabla">
+                            {{i.3}}
+                        </td>
+                        <td class=" borde_tabla">
+                            {{i.4}}
+                        </td>
+                        <td class=" borde_tabla">
+                            {{i.5}}
+                        </td>
+                        <td class=" borde_tabla">
+                            {{i.6}}
+                        </td>
+                        <td class=" borde_tabla">
+                            {{i.7}}
+                        </td>
+                        
+                        <td class="borde_tabla">
+                            <a class="fondo_verde boton_editar margin_15 padding_lados_15 font_blanco" href="/Editar/{{i.0}}">editar</a>
+                            <a class="fondo_rojo boton_eliminar margin_15 padding_lados_15 font_blanco" href="/Eliminar_usuario/{{i.0}}">eliminar</a>
+                        </td>
+                    </tr>
+    
+                    {%endfor%}
+    
+                </tbody>
+            </table>
+             
+        </div>
+        {%endif%}
+    </div>
+
+
+
+
+    <div class="Contenedor_Edit_Cliente">
+        <form action="/Edit" method="POST" class="">
+
+            <div class="ContenedorN" id="">
+                <h2 class="titulo">
+                    <b>Ingrese los datos solicitados.</b>
+                </h2>
+                <div class="seccion">
+                    <input type="text" name="Nombre_Completo" autocomplete="off" required>
+                    <label for="Nombre_Completo" class="Label_Nombre_Completo">
+                        <span class="contenido_Nombre_Completo">Nombre Completo.</span>
+                    </label>
+                </div>
+                <div class="seccion">
+                    <input type="text" name="Telefono" autocomplete="off" required>
+                    <label for="Telefono" class="Label_Telefono">
+                        <span class="contenido_Telefono">Telefono.</span>
+                    </label>
+                </div>
+
+
+
+
+
+                <div class="seccion">
+                    <input type="text" name="Correo" autocomplete="off" required>
+                    <label for="Correo" class="Label_Correo">
+                        <span class="contenido_Correo">Correo.</span>
+                    </label>
+                </div>
+
+                <div class="seccion">
+                    <input type="text" name="Cedula" autocomplete="off" required>
+                    <label for="Cedula" class="Label_Cedula">
+                        <span class="contenido_Cedula">Cedula.</span>
+                    </label>
+                </div>
+
+                <div class="seccion">
+                    <input type="text" name="ID" autocomplete="off" required>
+                    <label for="ID" class="Label_ID">
+                        <span class="contenido_ID">Codigo de seguridad</span>
+                    </label>
+                </div>
+                <div class="seccion">
+                    <input type="text" name="Fecha_Afiliacion" autocomplete="off" required>
+                    <label for="Fecha_Afiliacion" class="LabelFecha_Afiliacion">
+                        <span class="contenido_Fecha_Afiliacion">Fecha de afiliación.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn_guardar fondo_verde margin_aa_15">
+                    Guardar
+
+                </button>
+                
+
+
+
+            </div>
+
+        </form>
+    </div>
+    
+
+</div>
+<script src="{{url_for('static', filename='js/filtroTabla.js')}}"></script>
+
+<script>
+    /*const dt = new Tabla('#datatable',[
+        {
+            id:'bAdd',
+            text:'agregar',
+            icon:'add_circle',
+            action: function(){
+                //codigo
+            }
+        }
+    ]);*/
+    //let dt = new Busqueda('#datatable');
+    //dt.parse()
+</script>
+
+{%endblock%}

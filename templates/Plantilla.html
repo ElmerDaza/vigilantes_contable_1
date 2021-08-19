@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/plantilla.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/colores_basicos.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/select2.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/select2.min.css')}}">
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+
+
+</head>
+
+<body id="">
+    <div class="center_preloader flex" id="center_preloader">
+        <div class="loadingio-spinner-interwind-omci4k0mtro">
+            <div class="ldio-3eeg2ccjgc7">
+                <div>
+                    <div>
+                        <div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav_sup fondo_azul" style="position: sticky;">
+        <nav class="navegador">
+            <ul class="flex padding_lados_15">
+                <li class="margin_lados_15"><a href=""></a></li>
+                <li class="margin_lados_15"><a href="/CrearFactura">Nueva Factura</a></li>
+                <li class="margin_lados_15"><a href="/Admin_Fac">Admin Facturas</a></li>
+                <li class="margin_lados_15"><a href="">Reporte de Ventas</a></li>
+                <li class="margin_lados_15"><a href="/Productos">Productos</a></li>
+                <li class="margin_lados_15"><a href="/Clientes">Clientes</a></li>
+                <li class="margin_lados_15"><a href="/Admin_Caja">Movimientos en caja</a></li>
+                <li class="margin_lados_15"><a href=""><span></span> Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="contenido">
+        {%block body%}
+
+        {%endblock%}
+    </div>
+    
+    
+    <!--<script src="{{url_for('static', filename='js/validaciones.js')}}"></script>-->
+    <script src="{{url_for('static', filename='js/select2.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/select2.js')}}"></script>
+    <script src="{{url_for('static', filename='js/select2.full.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/select2.full.js')}}"></script>
+    <script src="{{url_for('static', filename='js/preloader.js')}}"></script>
+
+
+
+</body>
+
+</html>

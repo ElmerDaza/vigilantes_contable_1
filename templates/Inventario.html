@@ -1,0 +1,36 @@
+{%extends "Plantilla.html" %}
+{%block body%}
+<h1>
+    yo tengo el id: {{pago[1]}}
+</h1>
+<h2>
+    y yo tengo los codigos: {{pago[2]}}
+</h2>
+<p>yo soy pago {{pago[0]}}, y yo soy id {{pago[1]}}</p>
+
+<table>
+    <tbody class="off" style="width: 0; height: 0;">
+        {%for i in datos%}
+        <tr>
+            <td>{{i.0}}</td>
+            <td class="nombre_cliente{{i.0}}">{{i.1}}</td>
+            <!--nombre-->
+            <td class="telefono_cliente{{i.0}}">{{i.2}}</td>
+            <!--telefono-->
+            <td>{{i.3}}</td>
+            <!--correo-->
+            <td class="nit_cliente{{i.0}}">{{i.4}}</td>
+            <!--cedula-->
+            <td class="direccion_cliente{{i.0}}">{{i.5}}</td>
+            <!--direccion-->
+            <td>{{i.6}}</td>
+            <!--clave_seguridad-->
+            <td>{{i.7}}</td>
+            <!--fecha registro-->
+        </tr>
+        {%endfor%}
+
+    </tbody>
+</table>
+
+{%endblock%}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="aparece" id="nuevoU">
+        <div>
+
+            <form action="/Cliente_Nuevo" method="POST">
+
+                <div class="ContenedorN" id="">
+                    <h2 class="titulo">
+                        <b>Ingrese los datos solicitados.</b>
+                    </h2>
+                    <div class="seccion">
+                        <input type="text" name="Nombre_Completo" autocomplete="off" required>
+                        <label for="Nombre_Completo" class="Label_Nombre_Completo">
+                            <span class="contenido_Nombre_Completo">Nombre Completo.</span>
+                        </label>
+                    </div>
+                    <div class="seccion">
+                        <input type="text" name="Telefono" autocomplete="off" required>
+                        <label for="Telefono" class="Label_Telefono">
+                            <span class="contenido_Telefono">Telefono.</span>
+                        </label>
+                    </div>
+
+
+
+
+
+                    <div class="seccion">
+                        <input type="text" name="Correo" autocomplete="off" required>
+                        <label for="Correo" class="Label_Correo">
+                            <span class="contenido_Correo">Correo.</span>
+                        </label>
+                    </div>
+
+                    <div class="seccion">
+                        <input type="text" name="Cedula" autocomplete="off" required>
+                        <label for="Cedula" class="Label_Cedula">
+                            <span class="contenido_Cedula">Cedula.</span>
+                        </label>
+                    </div>
+
+                    <div class="seccion">
+                        <input type="text" name="ID" autocomplete="off" required>
+                        <label for="ID" class="Label_ID">
+                            <span class="contenido_ID">Codigo de seguridad</span>
+                        </label>
+                    </div>
+                    <div class="seccion">
+                        <input type="text" name="Fecha_Afiliacion" autocomplete="off" required>
+                        <label for="Fecha_Afiliacion" class="LabelFecha_Afiliacion">
+                            <span class="contenido_Fecha_Afiliacion">Fecha de afiliación.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn_guardar">
+                        Guardar
+
+                    </button>
+                    <div class="salir">
+                        <p id="salir">Cancelar</p>
+                    </div>
+
+                    <hr id="diviciona">
+
+
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

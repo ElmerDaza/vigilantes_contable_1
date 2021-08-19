@@ -1,0 +1,88 @@
+{%extends "Plantilla.html" %}
+{%block body%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/editar.css')}}">
+    <h1 class="titulo fondo_gris">Esta editando informacion del usuario {{dat.1}}</h1>
+    <div class="cancelar_boton">
+        <a href="/Clientes" class="b_cancelar fondo_rojo">
+            CANCELAR
+        </a>
+    </div>
+    
+    <form action="/Modificar/{{dat.0}}" method="POST">
+        <div class="ContenedorNuevo flex wrap padding_15" id="">
+
+            <div class="seccion margin_aa_15">
+                <input type="text" name="Nombre_Completo" value="{{dat.1}}" autocomplete="off" required pattern="[a-zA-Z ]+">
+                <label for="Nombre_Completo" class="Label_Nombre_Completo">
+                    <span class="contenido_Nombre_Completo">Nombre Completo.</span>
+                </label>
+            </div>
+
+            <div class="seccion margin_aa_15">
+                <input type="text" name="Telefono" value="{{dat.2}}" autocomplete="off" required pattern="[0-9]+">
+                <label for="Telefono" class="Label_Telefono">
+                    <span class="contenido_Telefono">Telefono.</span>
+                </label>
+            </div>
+
+            <div class="seccion margin_aa_15">
+                <input type="text" name="Correo" value="{{dat.3}}" autocomplete="on" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <label for="Correo" class="Label_Correo">
+                    <span class="contenido_Correo">Correo.</span>
+                </label>
+            </div>
+            
+            <div class="seccion margin_aa_15">
+                <input type="text" name="Cedula" value="{{dat.4}}" autocomplete="off" required pattern="[0-9]+">
+                <label for="Cedula" class="Label_Cedula">
+                    <span class="contenido_Cedula">Cedula.</span>
+                </label>
+            </div>
+            <div class="seccion margin_aa_15">
+                <input type="text" name="Direccion" value="{{dat.5}}" autocomplete="off" required>
+                <label for="Direccion" class="Label_Direccion">
+                    <span class="contenido_Direccion">Direccion.</span>
+                </label>
+            </div>
+
+            <div class="seccion margin_aa_15">
+                <input type="text" name="ID" value="{{dat.6}}" autocomplete="off" required minlength="4" maxlength="4">
+                <label for="ID" class="Label_ID">
+                    <span class="contenido_ID">Codigo de seguridad</span>
+                </label>
+            </div>
+            
+            
+            <div class="seccion margin_aa_15">
+                <input type="date" name="Fecha_Afiliacion" value="{{dat.7}}" autocomplete="off" required>
+                <label for="Fecha_Afiliacion" class="LabelFecha_Afiliacion">
+                    <span class="contenido_Fecha_Afiliacion">Fecha de afiliación.</span>
+                </label>
+            </div>
+            <div class="seccion margin_aa_15">
+                <input type="checkbox" {{cobra}} name="Cobro_recurrente" autocomplete="off" id="cobro_recurrente">
+                <label for="Producto_Credito" class="LabelProducto_Credito">
+                    <span class="contenido_Producto_Credito">Cobro recurente de monitoreo.</span>
+                </label>
+            </div>
+            <button type="submit" class="btn_guardar fondo_verde">
+                Guardar
+    
+            </button>
+
+        </div>
+
+        
+
+    </form>
+
+    <div class="mensage">
+        <p class="parrafo_mensage">
+            La informacion que esta por modificar no se podra 
+            recuperar en el futuro, debe estar seguro de los cambios que quiere guardar.
+        </p>
+    </div>
+
+    
+{%endblock%}

@@ -1,0 +1,68 @@
+{%extends "Plantilla.html" %}
+{%block body%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/crear_factura.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/Abono_Credito.css')}}">
+
+<div>
+    <ul class="ListaMenu">
+        <li>
+            <a href="#">
+                seleccione_factura
+            </a>
+            <ul class="SubMenu">
+                <li>
+                    <a href="CrearFactura">Factura_venta</a>
+                </li>
+                <li>
+                    <a href="AbonoCredito">Factura_abono_credito</a>
+                </li>
+                <li>
+                    <a href="FacturaEgreso">Factura_Egreso</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="seleccion_cliente">
+        <div onclick="Mostrar()" id="boton_mostar" title="titulo" aria-expanded="true">
+            <span class="texto">
+                seleccione usuario
+            </span>
+            <span class="">
+
+            </span>
+        </div>
+        <div class="content_clientes off" id="mostrar">
+            <div>
+                <input type="text" class="cBuscador valor2">
+            </div>
+            <div>
+                
+                
+            </div>
+            <ul id="selector">
+                {%for i in datos%}
+                <li class="selector{{i.0}}">
+                    <a class="a_seleccion"  id="select{{i.0}}" href="/perfil/{{i.0}}"
+                        aria-disabled="false" aria-selected="false">
+                        <span id="check{{i.0}}" class="check"></span>
+                        <span id="text{{i.0}}" class="text filtro2">
+                            {{i.1}}
+                        </span>
+                    </a>
+                </li>
+                {%endfor%}
+
+            </ul>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<script src="{{url_for('static', filename='js/filtroTabla.js')}}"></script>
+<script src="{{url_for('static', filename='js/Facturacion.js')}}"></script>
+<script src="{{url_for('static', filename='js/Perfil.js')}}"></script>
+
+{%endblock%}

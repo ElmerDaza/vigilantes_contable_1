@@ -1,0 +1,47 @@
+{%extends "Plantilla.html" %}
+{%block body%}
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+
+<div>
+    <h2>Selecciona una opción</h2>
+    <div>
+        <ul class="flex wrap fondo_gris">
+            <li class="margin_15 cuadro_100 fondo_rojo">
+                <a href="{{url_for('static', filename='pdf/Factura_venta_prueva.pdf')}}" target="_blank" download="listo.pdf">
+                    documento
+                </a>
+            </li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href="CrearFactura">Nueva Factura</a></li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href="Admin_Fac">Admin Facturas</a></li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href="">Reporte de Ventas</a></li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href="Productos">Productos</a></li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href="Clientes">Clientes</a></li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href="Admin_Caja">Movimientos en caja</a></li>
+            <li class="margin_15 cuadro_100 fondo_rojo"><a href=""><span></span> Cerrar Sesion</a></li>
+    
+        </ul>
+    </div>
+</div>
+
+
+  <script>
+    var expanded = false;
+
+    function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+    } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
+    }
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        });
+    </script>
+{%endblock%}

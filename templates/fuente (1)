@@ -1,0 +1,301 @@
+imagenes sgv__________________________________________________
+https://undraw.co/illustrations
+
+preloadre______________________________________________________
+https://loading.io/spinner/interwind/-orbit-rotate-scale-ball#
+
+
+enviar correos__________________________________________________
+https://www.youtube.com/watch?v=7ZcFcTdCa7o
+
+OBTENER CONTENIDO DE LA PAGINA CON PYTHON___________________________
+https://programmerclick.com/article/48821597346/
+https://www.it-swarm-es.com/es/python/como-obtener-el-valor-de-un-elemento-en-python-selenium/836451472/
+
+
+
+--------------------
+modelo de diseño
+https://www.youtube.com/watch?v=2C_faqgFtjI&t=63s
+
+
+buscador de tabla_________________________
+https://www.youtube.com/watch?v=yacU3HORH28
+
+
+
+fpdf___________________
+https://alexanderae.com/pyfpdf-un-generador-de-archivos-pdf-en-python.html
+https://alexanderae.com/pages/pyfpdf.html
+
+alinear elementos del pdf___________________________________________
+http://www.fpdf.org/es/doc/cell.htm
+
+
+de numero a texto
+https://gist.github.com/efrenfuentes/3785655
+
+
+node.js con mysql______________
+https://github.com/mysqljs/mysql
+https://www.youtube.com/watch?v=O3yNkUfkXfM
+
+
+
+
+codigo cobranza 16/8/2021_______________________
+
+            if(len(usuario)!=0):
+                #se recorre cada usuario registrado en la tabla creditos
+                #print(usuarios[0])
+                for i in usuario:
+                    usu=i
+                    #se consulta el usuario
+                    #print(i[0])
+                    user = bd.Consultar('usuarios',usu[0],'ID_Usuarios')
+                    #print(user)
+                    user=user[0]
+                    #se consulta los meses que se le han cobrado al usuario
+                    meses_cobrados=usu[3]
+                    #se obtiene el dia del cobro
+                    año,mes,Dia_Creacion_Credito=R.Seleccion_año_mes_dia(usu[2])
+                    #se obtiene el ultimo mes que se cobró al usuario
+                    ultimoMes=''
+                    if(len(meses_cobrados)!=0):
+                        ultimoMes=ultimo_mes_cobrado(meses_cobrados)
+
+                    #el ultimo mes cobrado debe ser diferente al mes actual
+                    #la longitud de meses cobrados debe ser diferente de cero
+                    #y el dia de cobro debe ser igual al mes actual
+                    #print(int(Dia_Creacion_Credito),len(meses_cobrados),ultimoMes,len(usu))
+                    if(ultimoMes!=now.month and len(meses_cobrados)!=0 and int(Dia_Creacion_Credito) <= now.day):
+                        #if(len(meses_cobrados)!=0):
+                        #se crea el pdf y se envia el email
+                        P.Factura_Pago_Recurrente(user,'',usu[1],'Recordatorio de compromiso')
+                        #se agrega el mes actual a la lista
+                        meses_cobrados+=','+format(now.month)
+                        print('COBRADO A ',user)
+                    #en caso de que nunca se alla cobrado entra aqui
+                    elif(ultimoMes!=now.month and len(meses_cobrados)==0 and int(Dia_Creacion_Credito) <= now.day):
+                        #se crea el pdf y se envia el email
+                        P.Factura_Pago_Recurrente(user,'',usu[1],'Recordatorio de compromiso')
+                        #se agrega el mes
+                        meses_cobrados=format(now.month)
+                        print('PRIMERA VEZ COBRADO A ',user)
+
+                    #se consulta el registra en la tabla de creditos
+                    datos=bd.Consultar('creditos',usu[0],'ID_Usuarios')[0]
+                    #se agrega el valor de meses cobrados
+                    lu=[]#
+                    for i in range(0,len(datos)-1):
+                        lu.append(datos[i])
+                    lu.append(meses_cobrados)
+                    datos=lu
+                    #se registra de nuevo contenido
+                    print(lu)
+                    bd.Modificar('creditos',usu[0],datos,'ID_Usuarios')
+                contador=0
+            else:
+                print('no hay registros')
+                time.sleep(3600)
+
+
+
+
+
+
+filtrar tabla logrado codigo por estudiar_________________________________
+
+class Busqueda{
+    constructor(selector){
+        //variables
+        this.selecto=selector;
+        this.element= document.querySelector(selector);
+        this.headers=[];
+        this.contenidoBody=[];
+        this.j=0;
+        this.doc =document;
+        //this.parse()
+        //this.onInit();
+        //this.Buscar()
+    }
+    /*parse(){
+        const headers = [... this.element.querySelector('thead tr').children];
+        const trs=[...this.element.querySelector('tbody').children];
+
+        
+        headers.forEach(element =>{
+            this.headers.push(element.textContent)
+        });
+        
+        trs.forEach(tr=>{
+            const cells=[...tr.children];
+            const item ={
+                id: this.generateUUID(),
+                values:[]
+            };
+            cells.forEach(cell=>{
+                if(cell.children.length > 0){
+                    const statusElement = [...cell.children][0];
+                    const status = statusElement.getAttribute('class');
+                    //console.log(status)
+                    if(status !== null){
+                        item.values.push(`<input type="checkbox" name="" id="">`)
+                        item.values.push(`<span class='${status}'></span>`);
+                    }
+            }else{
+               item.values.push(cell.textContent);
+           }
+        });
+        this.contenidoBody.push(item);
+      });
+    console.log(this.contenidoBody)
+    this.contenidoBodyBK = this.contenidoBody;
+    //console.log(this.headers)
+    //this.MakeTable();
+    }*/
+    /*onInit(){
+        let tbody = document.getElementById('body');
+        while(tbody.rows.length > 0 ){
+            tbody.deleteRow(0);
+        }
+        let i =0;
+        let idtable=this.selecto.substr(1);
+        this.contenidoBody.forEach(element => {
+            //let fila = tbody.insertRow(tbody.rows.length);
+            const {id, values}=this.contenidoBody[i]
+            //console.log(id+"-------------"+values[i])
+                
+            this.addRow(idtable,values);  
+            i++;                  
+            
+
+        });
+    }*/
+    Buscar(input,selector){
+
+        
+        this.doc.addEventListener('keyup',(e)=>{
+            console.log(e.target.matches(input));
+            //let hijo = this.doc.getElementsByClassName(selector.substr(1));
+            //let padre = hijo[0].parentNode;
+            if(e.target.matches(input)){
+                
+                console.log(e.target.value);
+                this.doc.querySelectorAll(selector).forEach((el)=> {
+                    let padre = el.parentNode;
+                    //console.log(padre)
+                    if(el.textContent.toLowerCase().includes(e.target.value)){
+                        
+                        padre.classList.remove('off')
+                
+                
+                    }else{
+                        padre.classList.add('off');
+                    }
+                
+                });
+                
+            }
+        });
+        /*let busqueda = document.getElementById(input).Value;
+        
+        this.contenidoBody = this.contenidoBodyBK;
+        this.contenidoBody = this.contenidoBody.filter(element=>{
+            const {id, values}=this.contenidoBody[this.j]
+            this.j++;
+            console.log(values[2].toLowerCase().indexOf(busqueda))
+            return values[2].toLowerCase().indexOf(busqueda) >-1;
+            
+            
+        });
+        console.log(this.contenidoBody)
+        this.j=0;
+        this.onInit();*/
+
+
+    }
+    generateUUID(){
+        return (Date.now()* Math.floor(Math.random()* 100088)).toString();
+    }
+    addRow(tableID,arreglo) {
+        // Get a reference to the table
+        let tableRef = document.getElementById(tableID);
+        //agregar a checkbox a la primera celda
+        let body = document.getElementById('trbody');
+
+      
+        // Insert a row at the end of the table
+        let newRow = tableRef.insertRow(-1);
+      
+        // Insert a cell in the row at index 0
+        let newCell;
+        let newText;
+        for (let i = 0; i < 8; i++) {
+            newCell = newRow.insertCell(i);
+            //agregar checkbox
+            //console.log(newCell)
+            if(i<2){
+                newCell.innerHTML=arreglo[i];
+            }else{
+                // Append a text node to the cell
+                newText = document.createTextNode(arreglo[i]);
+                newCell.appendChild(newText);
+            }
+            
+        }
+        
+    }
+      
+}
+let busqueda = new Busqueda('#datatable');
+let form = document.getElementById('busquedaForm');
+//busqueda.parse();
+busqueda.Buscar('.valor','.filtro');
+form.addEventListener('submit',()=>{
+    
+});
+
+
+
+#################################################################################
+
+
+
+
+
+
+
+
+
+
+function codigo(leng,codigos,cod, contenido,id_a){
+    
+    for (let i = 0; i < leng; i++) {
+        let element = codigos.value[i];
+        if(element === '0' ||element === '1' ||element === '2' ||element === '3' ||element === '4' ||
+            element === '5' ||element === '6' ||element === '7' ||element === '8' || element === '9'){
+            cod+=element;
+        }else{
+            if (element === ',') {
+                if (cod === id_a.substr(6)) {
+                    contenido += codigos.value.substr(i+2);
+                    break;
+                }else{
+                    contenido +=cod+', ';
+                    
+                }
+            }else if(element === ' '){
+                
+                //contenido+=', ';
+                //codigos.value = codigos.value.substr(contenido.length)
+                cod='';
+            }
+        }
+        
+    }
+    return contenido;
+}
+
+
+

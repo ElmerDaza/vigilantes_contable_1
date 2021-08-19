@@ -1,0 +1,288 @@
+{%extends "Plantilla.html" %}
+{%block body%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/crear_factura.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/Perfil_user.css')}}">
+
+<div>
+    <ul class="ListaMenu">
+        <li>
+            <a href="#">
+                seleccione_factura
+            </a>
+            <ul class="SubMenu">
+                <li>
+                    <a href="/CrearFactura">Factura_venta</a>
+                </li>
+                <li>
+                    <a href="/AbonoCredito">Factura_abono_credito</a>
+                </li>
+                <li>
+                    <a href="/FacturaEgreso">Factura_Egreso</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    
+
+    <div class="usuario_perfil">
+        <div class="barra_ventanas">
+            <ul class="flex">
+                <li class="padding_15">
+                    <span id="ID_perfil" class="">
+                        Perfil
+                    </span>
+                </li>
+                <li class="padding_15"><span id="ID_transacciones" class="">Transacciones</span></li>
+                <li class="padding_15"><span id="ID_Estado" class="">Estado de cuenta</span></li>
+                <!--<li>Cuentas por pagar</li>-->
+                <li class="padding_15"><span id="ID_Mas" class="">mas</span></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="perfil_usuario" id="perfil_usuario">
+                
+                <div class="Perfil_title flex">
+                    <h1>Perfil de usuario</h1>
+                    <a href="/Eliminar/{{user.0}}" class="btn boton_eliminar fondo_rojo">Eliminar usuario</a>
+                    <a href="/Editar/{{user.0}}" class="btn boton_editar fondo_verde">Editar usuario</a>
+                </div>
+                <div class="content_caracteristicas flex">
+                    <div class="w_40 primero_">
+                        <h2 class="padding_aa_15">{{user.1}}</h2>
+                        <h3 class="padding_aa_15">{{user.4}}</h3>
+                        <p class="padding_aa_15"><b>Estado: </b> <span>Activo</span></p>
+                    </div>
+                    <div class="w_20">
+                        <img src="../static/img/user.svg" alt="" class="img_center">
+                    </div>
+                    <div class="w_40">
+                        <h2 class="padding_aa_15">Riohacha</h2>
+                        <p class="padding_aa_15">{{user.5}}</p>
+                        <p class="padding_aa_15">{{user.2}}</p>
+                        <p class="padding_aa_15">{{user.3}}</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="Transacciones off" id="Transacciones">
+                <h2>Facturas Del Usuario</h2>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="Tabla_Facturas">
+                    {% if contenido == True%}
+                    <div class="sin_contenido">
+
+                        <h2>SIN CONTENIDO</h2>
+                        <img src="{{url_for('static', filename='img/No_hay_contenido.svg')}}" id="no_hay_contenido"
+                            alt="">
+                    </div>
+                    {%else%}
+
+                    <div class="margin_aa_15">
+
+                        <table id="datatable">
+                            <thead>
+                                <tr id="cabeza">
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        No Factura
+                                    </th>
+
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Valor Total
+                                    </th>
+
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Valor Pagado
+                                    </th>
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Saldo
+                                    </th>
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Fecha Creacion
+                                    </th>
+
+
+                                </tr>
+
+
+
+                            </thead>
+                            <tbody id="body" class="fondo_azul">
+
+                                {%for i in total%}
+                                <tr id="trbody{{i.0}}">
+
+                                    <td class="filtro borde_tabla">
+                                        {{i.0}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.1}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.1}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        0.0
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.2}}
+                                    </td>
+
+                                </tr>
+
+                                {%endfor%}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    {%endif%}
+                </div>
+
+
+            </div>
+            <div class="Estado_Cuenta off" id="Estado_Cuenta">
+                <h2>Estado de cuenta</h2>
+                
+                
+                <div class="flex wrap">
+                    <p>Moneda: Peso Colombiano</p>
+                    <div class="fondo_azul">
+                        <p >
+                            <b></b>
+                        </p>
+                        <p class="fs_10">
+                            deuda por cobrar
+                        </p >
+                        
+                    </div>
+                    <div class="fondo_verde">
+                        <p>
+                            <b></b>
+                        </p>
+                        <p class="fs_10">
+                            valor a favor
+                        </p>
+                    </div>
+                    <div class="fondo_verde">
+                        <p>
+                            <b></b>
+                        </p>
+                        <p class="fs_10">
+                            saldo cartera
+                        </p>
+                    </div>
+                    <div class="fondo_rojo">
+                        <p>
+                            <b></b>
+                        </p>
+                        <p class="fs_10">
+                            vencido
+                        </p>
+                    </div>
+                    <div class="fondo_naranja">
+                        <p>
+                            <b></b>
+                        </p>
+                        <p class="fs_10">
+                            por vencer
+                        </p>
+                    </div>
+
+
+
+                </div>
+                
+                
+                
+                <div class="Tabla_Facturas">
+                    {% if contenido == True%}
+                        <div class="sin_contenido">
+            
+                            <h2>SIN CONTENIDO</h2>
+                            <img src="{{url_for('static', filename='img/No_hay_contenido.svg')}}" id="no_hay_contenido" alt="">
+                        </div>
+                    {%else%}
+            
+                    <div class="margin_aa_15">
+            
+                        <table id="datatable">
+                            <thead>
+                                <tr id="cabeza">
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Vencimiento
+                                    </th>
+                                    
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Cuota
+                                    </th>
+                                    
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Valor a favor
+                                    </th>
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Deuda por cobrar
+                                    </th>
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Valor vencido
+                                    </th>
+                                    <th class="fondo_negro font_blanco borde_tabla">
+                                        Valor por vencer
+                                    </th>
+                                    
+                                    
+                                </tr>
+                
+                
+                
+                            </thead>
+                            <tbody id="body" class="fondo_azul">
+                
+                                {%for i in total%}
+                                <tr id="trbody{{i.0}}" >
+                                    
+                                    <td class="filtro borde_tabla">
+                                        {{i.0}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.3}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.5}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.2}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.4}}
+                                    </td>
+                                    <td class=" borde_tabla">
+                                        {{i.1}}
+                                    </td>
+                                    
+                                </tr>
+                
+                                {%endfor%}
+                
+                            </tbody>
+                        </table>
+                         
+                    </div>
+                    {%endif%}
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{{url_for('static', filename='js/filtroTabla.js')}}"></script>
+<script src="{{url_for('static', filename='js/Facturacion.js')}}"></script>
+<script src="{{url_for('static', filename='js/Perfil.js')}}"></script>
+
+{%endblock%}
